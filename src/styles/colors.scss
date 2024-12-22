@@ -1,0 +1,53 @@
+/* Brand */
+$brand-primary: #050533;
+$brand-secondary: #6b5cf6;
+$brand-secondary-light: #edebfe;
+$brand-grey: #f8f8f8;
+$medium-grey: #c2c2c2;
+
+/* UI Text */
+$text-primary: $brand-primary;
+$text-secondary: #6b728b;
+$text-link: $brand-secondary;
+$text-white: #ffffff;
+$text-info: #0089ed;
+$text-success: #69a659;
+$text-notice: #e1b000;
+$text-warning: #ff7816;
+$text-error: #df1b41;
+
+/* UI Element */
+$el-secondary: $brand-primary;
+$el-primary: #ffffff;
+$el-tertiary: #6b728b;
+$el-neutral: $brand-grey;
+$el-grey: #e9eaee;
+$el-info: #e3f3fe;
+$el-success: #e6f7e2;
+$el-notice: #fcf7e3;
+$el-warning: #ffebdc;
+$el-error: #ffe7e7;
+
+/* Colors */
+$lightest-bluish: #fbfbfc;
+
+/* Borders */
+$lightest-border-grey: $brand-grey;
+$light-border-grey: #eaeaea;
+$border-grey: #d2d2d2;
+$border-bluish: #e5e7ec;
+
+/* Just in use in this ui - NOT example of structure */
+$background-color: #f3f8fd;
+$background-color: #ffffff;
+$popup-background: #e8dfbc;
+$loader-color: #000000;
+$text-color: #000000;
+$grey-divider: #e7e8e4;
+$dark-grey: #565555;
+$text-black: #0c0803;
+$error-color: #ff0000;
+$grey: #9fa0a4;
+
+$react-teal: #61dafb;
+$orange: #ff4500;

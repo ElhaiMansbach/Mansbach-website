@@ -1,0 +1,18 @@
+/*  Sizes  */
+$mobile: 320;
+$tablet: 768;
+$desktop: 1200;
+$desktop-large: 1500;
+$desktop-max: 1920;
+
+/*  Medias  */
+$media-mobile: $mobile + px;
+$media-pre-mobile: ($mobile - 1) + px;
+$media-tablet: $tablet + px;
+$media-pre-tablet: ($tablet - 1) + px;
+$media-desktop: $desktop + px;
+$media-pre-desktop: ($desktop - 1) + px;
+$media-desktop-large: $desktop-large + px;
+$media-pre-desktop-large: ($desktop-large - 1) + px;
+$media-desktop-max: $desktop-max + px;
+$media-pre-desktop-max: ($desktop-max - 1) + px;
