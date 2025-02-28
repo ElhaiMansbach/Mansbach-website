@@ -33,7 +33,7 @@ function Header() {
         className={styles["item"]}
         onClick={toggleMenu} // Closes menu when a link is clicked
       >
-        <h4 className={styles["item-text"]}>{item.text}</h4>
+        <h4 className={styles["item-text"]} >{item.text}</h4>
       </Link>
     ));
   };

@@ -71,10 +71,6 @@
         text-align: center;
         font-size: rem_size(16);
         color: $dark-grey;
-
-        &:hover {
-          text-decoration: underline;
-        }
       }
     }
 
@@ -169,14 +165,34 @@
         }
 
         .item {
+          position: relative;
           border: none;
           color: white;
-          padding: 0 rem_size(10);
+          padding: 0 rem_size(0);
           font-size: rem_size(18);
+          transition: color 0.3s ease-in-out;
+          .item-text {
+            margin-block: 0;
+          }
 
           &:hover {
-            text-decoration: underline;
-            color: $brand-primary;
+            color: #61d2b4;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #61d2b4;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+          }
+
+          &:hover::after {
+            width: 100%;
+            left: 0;
           }
         }
       }
