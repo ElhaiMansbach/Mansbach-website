@@ -1,66 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
-
-html,
-body {
-	padding: 0;
+/* CSS Reset - חייב להיות בתחילת הקובץ */
+*, *::before, *::after {
+	box-sizing: border-box;
 	margin: 0;
-	font-family: Rubik, sans-serif;
-}
-
-body {
+	padding: 0;
+  }
+  
+  @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+  
+  html, body, body.site-body {
 	margin: 0 !important;
 	padding: 0 !important;
-	overflow-x: hidden; /* למנוע גלילה אופקית אם זו הבעיה */
+	overflow-x: hidden;
   }
 
-  html, body {
-	margin: 0;
-	padding: 0;
-	min-height: 100vh;
+  /* הגדרות בסיסיות */
+  html {
+	height: 100%;
+	overflow-x: hidden; /* מניעת גלילה אופקית */
+  }
+  
+  body {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden; /* מניעת גלילה אופקית */
+	margin: 0 !important; /* דורס הגדרות דפדפן */
+  }
+  
+  /* הגדר ספציפית את הקלאס שיש לך */
+  .site-body {
+	margin: 0 !important;
+	padding: 0 !important;
+  }
+  
+  main, .site-main {
+	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
   }
   
-  main, .site-content {
-	flex: 1;
+  #main-footer {
+	margin-top: auto;
   }
-
-.ltr {
-	direction: ltr;
-}
-
-a {
-	color: inherit;
-	text-decoration: none;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-button {
-	cursor: pointer;
-	font-family: Rubik, sans-serif;
-}
-
-.generic-text-black {
-	color: #000;
-}
-.generic-text-orange {
-	color: #fe8501;
-}
-
-p,
-h1,
-h1,
-h2,
-h3,
-h4 {
-	margin: 0;
-	padding: 0;
-}
-
-input,
-button {
-	all: initial;
-}

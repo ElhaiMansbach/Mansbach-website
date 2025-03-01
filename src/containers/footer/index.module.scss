@@ -1,181 +1,217 @@
 @import "/src/styles/imports.scss";
 
-// Variables
-$footer-bg-color: #f8f9fa;
-$footer-text-color: #333;
-$footer-link-color: #555;
-$footer-link-hover-color: #000;
-$footer-border-color: #e7e7e7;
+// סכמת צבעים מומלצת - ניתן להתאים לפי צרכי העיצוב הכולל
+$footer-bg-color: #2e3852;
+$footer-text-color: #f8f9fa;
+$footer-accent-color: #61d2b4; // התאמה לכפתור הקיים ב-button component
+$footer-link-color: #e0e0e0;
+$footer-link-hover-color: $footer-accent-color;
+$footer-border-color: rgba(255, 255, 255, 0.1);
+$footer-secondary-bg: rgba(0, 0, 0, 0.15);
 
 .footer-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  width: 100%;
   background-color: $footer-bg-color;
-  padding: rem_size(24) rem_size(16);
-  border-top: 1px solid $footer-border-color;
+  color: $footer-text-color;
+  padding-block: rem_size(40);
+  z-index: 10;
   direction: rtl;
-  flex-shrink: 0; /* Prevent footer from shrinking */
 
   .footer-container {
     width: 100%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: rem_size(16);
-    max-width: 1200px;
-
-    .footer-content {
-      width: 100%;
+    max-width: rem_size(1200);
+    
+    .footer-main {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: rem_size(12);
-      text-align: center;
-
-      .footer-all-rights-reserved {
-        color: $footer-text-color;
-        font-size: rem_size(14);
-        margin: 0;
+      gap: rem_size(32);
+      margin-bottom: rem_size(32);
+      
+      .footer-brand {
+        margin-bottom: rem_size(16);
+        
+        .footer-logo {
+          position: relative;
+          width: rem_size(120);
+          height: rem_size(40);
+          margin-bottom: rem_size(12);
+        }
+        
+        .footer-tagline {
+          font-size: rem_size(14);
+          color: $footer-link-color;
+          margin-top: rem_size(4);
+        }
       }
-
+      
+      .footer-heading {
+        font-size: rem_size(18);
+        font-weight: 600;
+        margin-bottom: rem_size(16);
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: rem_size(-6);
+          right: 0;
+          width: rem_size(40);
+          height: rem_size(2);
+          background-color: $footer-accent-color;
+        }
+      }
+      
       .footer-nav-container {
-        width: 100%;
-
         .footer-nav-list {
-          display: flex;
-          flex-direction: column;
-          gap: rem_size(12);
+          list-style-type: none;
           padding: 0;
           margin: 0;
-          list-style-type: none;
-
+          
           .footer-nav-item {
-            display: block;
-
+            margin-bottom: rem_size(12);
+            
             .footer-link {
               color: $footer-link-color;
               text-decoration: none;
               font-size: rem_size(14);
-              // transition: color 0.2s ease;
-
-              // &:hover {
-              //   color: $footer-link-hover-color;
-              //   text-decoration: underline;
-              // }
+              transition: color 0.3s ease, transform 0.2s ease;
+              display: inline-block;
+              
+              &:hover {
+                color: $footer-link-hover-color;
+                transform: translateX(-4px);
+              }
             }
           }
         }
       }
-
+      
+      .footer-contact-info {
+        .footer-contact-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: rem_size(12);
+          font-size: rem_size(14);
+          
+          .footer-contact-icon {
+            margin-left: rem_size(8);
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+    
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: rem_size(20);
+      border-top: 1px solid $footer-border-color;
+      
       .footer-social {
         display: flex;
         gap: rem_size(16);
-        margin-top: rem_size(16);
-
+        margin-bottom: rem_size(16);
+        
         .footer-social-link {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: rem_size(32);
-          height: rem_size(32);
+          width: rem_size(36);
+          height: rem_size(36);
           border-radius: 50%;
-          background-color: $footer-link-color;
-          color: white;
-          transition: background-color 0.2s ease;
-
+          background-color: $footer-secondary-bg;
+          color: $footer-text-color;
+          transition: all 0.3s ease;
+          
           &:hover {
-            background-color: $footer-link-hover-color;
+            background-color: $footer-accent-color;
+            transform: translateY(-3px);
           }
+          
+          .footer-social-icon {
+            width: rem_size(18);
+            height: rem_size(18);
+          }
+        }
+      }
+      
+      .footer-copyright {
+        font-size: rem_size(13);
+        color: rgba($footer-text-color, 0.7);
+        margin: 0;
+      }
+    }
+  }
+}
+
+// טאבלט - מסכים בינוניים
+@media (min-width: $media-tablet) {
+  .footer-wrapper {
+    padding: rem_size(50) rem_size(32) rem_size(30);
+    
+    .footer-container {
+      .footer-main {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        .footer-brand,
+        .footer-nav-section,
+        .footer-contact {
+          flex: 1;
+          min-width: rem_size(200);
+        }
+      }
+      
+      .footer-bottom {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        
+        .footer-social {
+          margin-bottom: 0;
         }
       }
     }
   }
 }
 
-// Tablet screen sizes - medium screens
-@media (min-width: $media-tablet) {
-}
-
+// דסקטופ - מסכים רחבים
 @media (min-width: $media-desktop) {
   .footer-wrapper {
+    padding: rem_size(60) rem_size(40) rem_size(30);
+    
     .footer-container {
-      .footer-content {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: rem_size(12);
-        text-align: center;
-
-        .footer-all-rights-reserved {
-          color: $footer-text-color;
-          font-size: rem_size(14);
-          margin: 0;
+      .footer-main {
+        flex-wrap: nowrap;
+        gap: rem_size(60);
+        
+        .footer-brand {
+          flex: 2;
         }
-
+        
+        .footer-nav-section {
+          flex: 3;
+        }
+        
+        .footer-contact {
+          flex: 2;
+        }
+        
         .footer-nav-container {
           .footer-nav-list {
-            flex-direction: row;
-            justify-content: center;
-
-            .footer-nav-item {
-              position: relative; /* Add relative positioning for the pseudo element */
-              border: none;
-
-              .footer-link {
-                color: $footer-link-color;
-                text-decoration: none;
-                font-size: rem_size(14);
-                position: relative; /* Ensure the text has the correct positioning */
-                transition: color 0.3s ease-in-out;
-
-                &:hover {
-                  color: #61d2b4;
-                }
-              }
-
-              /* Create the underline effect */
-              &::after {
-                content: "";
-                position: absolute;
-                bottom: -4px;
-                left: 50%;
-                width: 0;
-                height: 2px;
-                background-color: #61d2b4;
-                transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-              }
-
-              /* On hover, expand the underline from the center */
-              &:hover::after {
-                width: 100%;
-                left: 0;
-              }
-            }
-          }
-        }
-
-        .footer-social {
-          display: flex;
-          gap: rem_size(16);
-          margin-top: rem_size(16);
-
-          .footer-social-link {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            width: rem_size(32);
-            height: rem_size(32);
-            border-radius: 50%;
-            background-color: $footer-link-color;
-            color: white;
-            transition: background-color 0.2s ease;
-
-            &:hover {
-              background-color: $footer-link-hover-color;
+            flex-wrap: wrap;
+            column-gap: rem_size(40);
+            row-gap: rem_size(16);
+            
+            .footer-nav-item {
+              width: calc(50% - #{rem_size(20)});
             }
           }
         }
@@ -184,6 +220,13 @@ $footer-border-color: #e7e7e7;
   }
 }
 
-// Large desktop screen - wider screens
+// מסכי דסקטופ רחבים יותר
 @media (min-width: $media-desktop-large) {
+  .footer-wrapper {
+    .footer-container {
+      .footer-main {
+        gap: rem_size(80);
+      }
+    }
+  }
 }

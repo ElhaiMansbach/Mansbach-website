@@ -1,219 +1,384 @@
-// @import "../../styles/imports";
-@import "/src/styles/imports";
+@import "/src/styles/imports.scss";
 
-.wrapper {
-  height: rem_size(50);
+// סכמת צבעים - תואמת לפוטר שיצרנו קודם
+$header-bg-color: #2e3852;
+$header-text-color: #f8f9fa;
+$header-scrolled-bg: rgba(46, 56, 82, 0.95);
+$header-accent-color: #61d2b4;
+$header-link-color: #e0e0e0;
+$header-link-hover-color: $header-accent-color;
+$header-border-color: rgba(255, 255, 255, 0.1);
+$header-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: $header-bg-color;
+  color: $header-text-color;
+  transition: all 0.3s ease;
+  box-shadow: $header-shadow;
+  direction: rtl;
+  padding: rem_size(10) 0;
+
+  &.header-scrolled {
+    background-color: $header-scrolled-bg;
+    backdrop-filter: blur(8px);
+    padding: rem_size(5) 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .header-container {
     width: 100%;
-    height: rem_size(70);
-    z-index: 1000;
-    background-color: $dark-grey;
-    color: #ffffff;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    max-width: rem_size(1200);
+    margin: 0 auto;
+    padding: 0 rem_size(16);
 
-    .burger {
-      @include Button-Reset;
-      width: rem_size(20);
-      cursor: pointer;
-      margin-inline: rem_size(15) 0;
-    }
-
-    .logo-container {
-      position: relative;
-      width: rem_size(80);
-      height: rem_size(50);
+    .header-content {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-    }
-  }
 
-  .menu-wrapper {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    background: transparent;
-    pointer-events: none;
-
-    .menu {
-      position: absolute;
-      width: 80%;
-      height: 100vh;
-      background: white;
-      right: -100vw;
-      transition: right 300ms ease-out;
-      z-index: 20;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .menu-logo-container {
-        align-self: center;
+      .header-logo-container {
         position: relative;
-        width: rem_size(130);
-        height: rem_size(100);
-        display: flex;
-        align-items: center;
-      }
+        z-index: 1001;
 
-      .item {
-        display: block;
-        text-decoration: none;
-        padding: rem_size(20);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        text-align: center;
-        font-size: rem_size(16);
-        color: $dark-grey;
-      }
-    }
-
-    .backdrop {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.3);
-      z-index: 10;
-      opacity: 0;
-      transition: opacity 300ms ease-out;
-    }
-
-    &.active {
-      pointer-events: all;
-
-      .menu {
-        right: 0;
-      }
-
-      .backdrop {
-        opacity: 1;
-      }
-    }
-
-    .close-x {
-      position: absolute;
-      top: rem_size(10);
-      left: rem_size(15);
-      cursor: pointer;
-      border: none;
-      background: none;
-      width: rem_size(24);
-      height: rem_size(24);
-      svg {
-        width: rem_size(24);
-        height: rem_size(24);
-      }
-    }
-  }
-
-  .cls-1 {
-    fill: white;
-  }
-
-  .cls-2 {
-    fill: transparent;
-  }
-}
-
-@media (min-width: $media-tablet) {
-  .menu-wrapper {
-    .menu {
-      width: 60%;
-    }
-  }
-}
-
-@media (min-width: $media-desktop) {
-  .header {
-    .burger,
-    .close-x,
-    .backdrop {
-      display: none;
-    }
-
-    .menu-wrapper {
-      position: static;
-      flex: 1 1 auto;
-      height: rem_size(50);
-      pointer-events: all;
-
-      .menu {
-        position: static;
-        width: auto;
-        height: rem_size(50);
-        background: transparent;
-        right: 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-
-        .menu-logo-container {
-          align-self: unset;
-          width: rem_size(70);
+        .header-logo {
+          display: block;
           height: rem_size(40);
-        }
-
-        .item {
+          width: rem_size(130);
           position: relative;
-          border: none;
-          color: white;
-          padding: 0 rem_size(0);
-          font-size: rem_size(18);
-          transition: color 0.3s ease-in-out;
-          .item-text {
-            margin-block: 0;
+
+          img {
+            transition: transform 0.3s ease;
           }
+
+          &:hover img {
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      .header-nav-desktop {
+        display: none;
+
+        .header-nav-list {
+          display: flex;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+
+          .header-nav-item {
+            margin: 0 rem_size(15);
+
+            .header-nav-link {
+              position: relative;
+              display: inline-block;
+              color: $header-link-color;
+              text-decoration: none;
+              font-size: rem_size(16);
+              font-weight: 500;
+              padding: rem_size(8) rem_size(6);
+              transition: color 0.3s ease;
+
+              &:hover {
+                color: $header-accent-color;
+              }
+
+              &.active {
+                color: $header-accent-color;
+              }
+
+              .header-link-indicator {
+                position: absolute;
+                bottom: rem_size(-4);
+                left: 50%; /* Start from center */
+                width: 0;
+                height: rem_size(2);
+                background-color: $header-accent-color;
+                transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+                transform: translateX(-50%); /* Center the element */
+              }
+              
+              &:hover .header-link-indicator,
+              &.active .header-link-indicator {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+
+        .header-contact-btn {
+          background-color: $header-accent-color;
+          color: white;
+          font-size: rem_size(14);
+          font-weight: 500;
+          text-decoration: none;
+          padding: rem_size(8) rem_size(16);
+          border-radius: rem_size(4);
+          transition: all 0.3s ease;
+          display: none;
 
           &:hover {
-            color: #61d2b4;
+            background-color: darken($header-accent-color, 10%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
           }
 
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: #61d2b4;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+          &:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .header-burger-btn {
+          background: none;
+          border: none;
+          padding: rem_size(6);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1001;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.1);
           }
 
-          &:hover::after {
+          svg {
+            width: rem_size(24);
+            height: rem_size(24);
+
+            path {
+              fill: $header-text-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // תפריט מובייל
+  .mobile-menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+
+      .mobile-menu {
+        transform: translateX(0);
+      }
+
+      .mobile-menu-backdrop {
+        opacity: 1;
+      }
+
+      .mobile-menu-item {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .mobile-menu {
+      position: relative;
+      width: 90%;
+      height: 100%;
+      background-color: $header-bg-color;
+      z-index: 2001;
+      padding: rem_size(40) 0;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+      display: flex;
+      flex-direction: column;
+
+      .mobile-menu-close {
+        position: absolute;
+        top: rem_size(16);
+        left: rem_size(16);
+        background: none;
+        border: none;
+        padding: rem_size(8);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        z-index: 2002;
+
+        &:hover {
+          transform: rotate(90deg);
+        }
+
+        svg {
+          width: rem_size(24);
+          height: rem_size(24);
+        }
+      }
+
+      .mobile-menu-logo {
+        margin-bottom: rem_size(32);
+        align-self: center;
+      }
+
+      .mobile-menu-nav {
+        margin-bottom: rem_size(32);
+
+        .mobile-menu-list {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+          width: 100%;
+
+          .mobile-menu-item {
+            transition: all 0.5s ease;
+            display: block;
             width: 100%;
-            left: 0;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: rem_size(16);
+            color: $dark-grey;
+
+            .mobile-menu-link {
+              display: block;
+              // color: $header-link-color;
+              text-decoration: none;
+              font-size: rem_size(18);
+              font-weight: 500;
+              padding-block: rem_size(25);
+              transition: color 0.3s ease;
+              color: $header-text-color;
+              z-index: 1;
+              width: 100%;
+
+              &:hover,
+              &.active {
+                color: $header-accent-color;
+              }
+            }
           }
         }
       }
 
-      .nav {
-        display: flex;
-        gap: rem_size(60);
+      .mobile-menu-contact {
+        margin-top: auto;
+        padding-top: rem_size(24);
+        border-top: 1px solid $header-border-color;
+
+        .mobile-menu-heading {
+          font-size: rem_size(18);
+          font-weight: 600;
+          margin-bottom: rem_size(16);
+          color: $header-accent-color;
+        }
+
+        .mobile-menu-contact-info {
+          .mobile-menu-contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: rem_size(12);
+            font-size: rem_size(14);
+
+            .mobile-menu-contact-icon {
+              margin-left: rem_size(8);
+            }
+          }
+        }
+      }
+    }
+
+    .mobile-menu-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+}
+
+// טאבלט - מסכים בינוניים
+@media (min-width: $media-tablet) {
+  .header-wrapper {
+    padding: rem_size(12) 0;
+
+    .header-container {
+      padding: 0 rem_size(32);
+
+      .header-content {
+        .header-actions {
+          .header-contact-btn {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .mobile-menu {
+      width: 65%;
+    }
+  }
+}
+
+// דסקטופ - מסכים רחבים
+@media (min-width: $media-desktop) {
+  .header-wrapper {
+    padding: rem_size(16) 0;
+
+    .header-container {
+      padding: 0 rem_size(40);
+
+      .header-content {
+        .header-nav-desktop {
+          display: block;
+        }
+
+        .header-actions {
+          .header-burger-btn {
+            display: none;
+          }
+        }
       }
     }
   }
 }
 
+// דסקטופ רחב יותר
 @media (min-width: $media-desktop-large) {
-  .menu-wrapper {
-    .menu {
-      .nav {
-        gap: rem_size(30);
-      }
-
-      .item {
-        font-size: rem_size(16);
+  .header-wrapper {
+    .header-container {
+      .header-content {
+        .header-nav-desktop {
+          .header-nav-list {
+            .header-nav-item {
+              margin: 0 rem_size(20);
+            }
+          }
+        }
       }
     }
   }

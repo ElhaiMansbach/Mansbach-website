@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir={"rtl"}>
-      <body className="site-body">
+      <body className="site-body" style={{margin: 0, padding: 0, overflowX: "hidden" }}>
         <Header />
         <main className="site-main">{children}</main>
         <Footer />
