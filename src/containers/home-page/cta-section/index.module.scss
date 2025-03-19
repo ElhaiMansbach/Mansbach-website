@@ -1,0 +1,94 @@
+// src/components/home/CtaSection.module.scss
+@import "/src/styles/imports.scss";
+
+.cta {
+  padding: rem_size(80) 0;
+  background: linear-gradient(135deg, #61d2b4 0%, #3aa897 100%);
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 rem_size(16);
+}
+
+.content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: rem_size(32);
+  font-weight: 700;
+  margin-bottom: rem_size(20);
+}
+
+.highlight {
+  position: relative;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: rem_size(-5);
+    height: rem_size(2);
+    background-color: white;
+    opacity: 0.5;
+  }
+}
+
+.text {
+  font-size: rem_size(18);
+  margin-bottom: rem_size(30);
+  line-height: 1.6;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: rem_size(16);
+  align-items: center;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: white;
+  color: #61d2b4;
+  font-weight: 600;
+  border: none;
+  
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  border: 2px solid white;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (min-width: $media-tablet) {
+  .title {
+    font-size: rem_size(38);
+  }
+  
+  .buttons {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: $media-desktop) {
+  .title {
+    font-size: rem_size(44);
+  }
+}

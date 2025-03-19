@@ -1,0 +1,127 @@
+// src/components/home/HeroSection.module.scss
+@import "/src/styles/imports.scss";
+
+.hero {
+  min-height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: rem_size(40) 0;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 rem_size(16);
+  display: flex;
+  flex-direction: column;
+  gap: rem_size(40);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: rem_size(24);
+  text-align: right;
+  max-width: 100%;
+  z-index: 1;
+}
+
+.title {
+  font-size: rem_size(36);
+  font-weight: 700;
+  line-height: 1.2;
+  color: $dark-grey;
+}
+
+.highlight {
+  color: #61d2b4;
+}
+
+.subtitle {
+  font-size: rem_size(18);
+  line-height: 1.6;
+  color: $dark-grey;
+  max-width: 600px;
+}
+
+.cta {
+  display: flex;
+  gap: rem_size(16);
+  margin-top: rem_size(8);
+}
+
+.primaryButton {
+  background-color: #61d2b4;
+  
+  &:hover {
+    background-color: darken(#61d2b4, 5%);
+  }
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: $dark-grey;
+  border: 2px solid #61d2b4;
+}
+
+.imageContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: rem_size(300);
+  border-radius: rem_size(12);
+  overflow: hidden;
+  box-shadow: 0 rem_size(10) rem_size(30) rgba(0, 0, 0, 0.1);
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (min-width: $media-tablet) {
+  .container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .content {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .imageContainer {
+    flex: 1;
+  }
+
+  .imageWrapper {
+    height: rem_size(400);
+  }
+
+  .title {
+    font-size: rem_size(44);
+  }
+}
+
+@media (min-width: $media-desktop) {
+  .title {
+    font-size: rem_size(52);
+  }
+
+  .subtitle {
+    font-size: rem_size(20);
+  }
+
+  .imageWrapper {
+    height: rem_size(500);
+  }
+}

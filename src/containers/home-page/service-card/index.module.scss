@@ -1,0 +1,105 @@
+// src/components/home/ServicesSection.module.scss
+@import "/src/styles/imports.scss";
+
+.services {
+  padding: rem_size(80) 0;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 rem_size(16);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: rem_size(60);
+}
+
+.title {
+  font-size: rem_size(32);
+  font-weight: 700;
+  margin-bottom: rem_size(16);
+  color: $dark-grey;
+}
+
+.subtitle {
+  font-size: rem_size(18);
+  color: $dark-grey;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem_size(30);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: rem_size(12);
+  padding: rem_size(30);
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 rem_size(4) rem_size(20) rgba(0, 0, 0, 0.05);
+  height: 100%;
+  
+  &:hover {
+    transform: translateY(rem_size(-5));
+    box-shadow: 0 rem_size(10) rem_size(25) rgba(0, 0, 0, 0.1);
+  }
+}
+
+.iconContainer {
+  width: rem_size(80);
+  height: rem_size(80);
+  border-radius: 50%;
+  background-color: rgba(97, 210, 180, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: rem_size(20);
+}
+
+.iconPlaceholder {
+  width: rem_size(40);
+  height: rem_size(40);
+  background-color: rgba(97, 210, 180, 0.5);
+  border-radius: 50%;
+}
+
+.cardTitle {
+  font-size: rem_size(20);
+  font-weight: 700;
+  margin-bottom: rem_size(12);
+  color: $dark-grey;
+}
+
+.cardDescription {
+  font-size: rem_size(16);
+  color: $dark-grey;
+  line-height: 1.6;
+}
+
+@media (min-width: $media-tablet) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: $media-desktop) {
+  .cardGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .title {
+    font-size: rem_size(38);
+  }
+}
