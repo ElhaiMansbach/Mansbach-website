@@ -1,0 +1,74 @@
+// src/components/simple-video/index.module.scss
+@import "/src/styles/imports.scss";
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+  .video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  
+  .videoButton {
+    @include Button-Reset();
+    position: absolute;
+    bottom: rem_size(20);
+    right: rem_size(20);
+    width: rem_size(40);
+    height: rem_size(40);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 2;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+    
+    svg {
+      width: rem_size(24);
+      height: rem_size(24);
+    }
+  }
+}
+
+// טאבלט ומעלה
+@media (min-width: $media-tablet) {
+  .videoWrapper {
+    .videoButton {
+      bottom: rem_size(30);
+      right: rem_size(30);
+      width: rem_size(50);
+      height: rem_size(50);
+      
+      svg {
+        width: rem_size(28);
+        height: rem_size(28);
+      }
+    }
+  }
+}
+
+// דסקטופ
+@media (min-width: $media-desktop) {
+  .videoWrapper {
+    .videoButton {
+      bottom: rem_size(40);
+      right: rem_size(40);
+      
+      &:hover {
+        transform: scale(1.15);
+      }
+    }
+  }
+}

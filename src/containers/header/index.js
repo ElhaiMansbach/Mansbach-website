@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { clsx } from "@/utils/functions";
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "@/svg/header/burger";
 import BurgerClose from "@/svg/menu/burger-close";
 import styles from "./index.module.scss";
 
-// ניתן לשנות את הנתונים הללו לפי צורך
 const menuItems = [
   { text: "דף הבית", route: "/" },
   { text: "תחומי עיסוק", route: "/services" },
@@ -22,18 +22,16 @@ function Header() {
   const [activeLink, setActiveLink] = useState("/");
 
   useEffect(() => {
-    // קביעת הקישור הפעיל לפי ה-URL הנוכחי
     const path = window.location.pathname;
     setActiveLink(path);
+    console.log("activeLink", activeLink);
 
-    // הוספת אירוע גלילה כדי לשנות את סגנון ההדר בעת גלילה
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
-    
-    // ניקוי האירוע בעת פירוק הקומפוננטה
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -41,7 +39,7 @@ function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    // חסימת גלילת הרקע כאשר התפריט פתוח
+
     document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
   };
 
@@ -50,98 +48,91 @@ function Header() {
     document.body.style.overflow = "auto";
   };
 
-  const headerClass = scrolled ? 
-    `${styles["header-wrapper"]} ${styles["header-scrolled"]}` : 
-    styles["header-wrapper"];
-
   return (
-    <header className={headerClass} id="main-header">
+    <header
+      className={clsx(
+        styles["header-wrapper"],
+        scrolled && styles["header-scrolled"]
+      )}
+    >
       <div className={styles["header-container"]}>
-        <div className={styles["header-content"]}>
-          {/* לוגו */}
-          <div className={styles["header-logo-container"]}>
-            <Link href="/" onClick={closeMenu}>
-              <div className={styles["header-logo"]}>
-                <Image 
-                  src="/assets/logos/logo.png" 
-                  alt="לוגו" 
-                  width={130} 
-                  height={40} 
-                  priority
-                />
-              </div>
-            </Link>
-          </div>
+        <button
+          className={styles["header-burger-btn"]}
+          onClick={toggleMenu}
+          aria-label="תפריט"
+        >
+          <Burger />
+        </button>
 
-          {/* תפריט ניווט לדסקטופ */}
-          <nav className={styles["header-nav-desktop"]}>
-            <ul className={styles["header-nav-list"]}>
-              {menuItems.map((item, index) => (
-                <li key={index} className={styles["header-nav-item"]}>
-                  <Link 
-                    href={item.route} 
-                    className={`${styles["header-nav-link"]} ${activeLink === item.route ? styles["active"] : ""}`}
-                  >
-                    {item.text}
-                    <span className={styles["header-link-indicator"]}></span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <nav className={styles["header-nav-desktop"]}>
+          <ul className={styles["header-nav-list"]}>
+            {menuItems.map((item, index) => (
+              <li key={index} className={styles["header-nav-item"]}>
+                <Link
+                  href={item.route}
+                  className={`${styles["header-nav-link"]} ${
+                    activeLink === item.route ? styles["active"] : ""
+                  }`}
+                >
+                  {item.text}
+                  <span className={styles["header-link-indicator"]}></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          {/* פעולות נוספות */}
-          <div className={styles["header-actions"]}>
-            <Link href="/contact" className={styles["header-contact-btn"]}>
-              צור קשר
-            </Link>
-
-            {/* כפתור המבורגר למובייל */}
-            <button 
-              className={styles["header-burger-btn"]} 
-              onClick={toggleMenu}
-              aria-label="תפריט"
-            >
-              <Burger />
-            </button>
-          </div>
+        <div className={styles["header-logo-container"]}>
+          <Link href="/" onClick={closeMenu}>
+            <div className={styles["header-logo"]}>
+              <Image
+                src="/assets/logos/logo.png"
+                alt="לוגו"
+                width={130}
+                height={40}
+                priority
+              />
+            </div>
+          </Link>
         </div>
       </div>
 
-      {/* תפריט מובייל */}
-      <div className={`${styles["mobile-menu-wrapper"]} ${isMenuOpen ? styles["active"] : ""}`}>
+      <div
+        className={`${styles["mobile-menu-wrapper"]} ${
+          isMenuOpen ? styles["active"] : ""
+        }`}
+      >
         <div className={styles["mobile-menu"]}>
-          {/* כפתור סגירה */}
-          <button 
-            className={styles["mobile-menu-close"]} 
+          <button
+            className={styles["mobile-menu-close"]}
             onClick={toggleMenu}
             aria-label="סגור תפריט"
           >
             <BurgerClose />
           </button>
 
-          {/* לוגו בתפריט המובייל */}
           <div className={styles["mobile-menu-logo"]}>
-            <Image 
-              src="/assets/logos/logo.png" 
-              alt="לוגו" 
-              width={120} 
-              height={40} 
+            <Image
+              src="/assets/logos/logo.png"
+              alt="לוגו"
+              width={120}
+              height={40}
             />
           </div>
 
-          {/* קישורי ניווט במובייל */}
           <nav className={styles["mobile-menu-nav"]}>
             <ul className={styles["mobile-menu-list"]}>
               {menuItems.map((item, index) => (
-                <li 
-                  key={index} 
+                <li
+                  key={index}
                   className={styles["mobile-menu-item"]}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <Link 
-                    href={item.route} 
-                    className={`${styles["mobile-menu-link"]} ${activeLink === item.route ? styles["active"] : ""}`}
+                  <Link
+                    href={item.route}
+                    className={`${styles["mobile-menu-link"]} ${
+                      activeLink === item.route ? styles["active"] : ""
+                    }`}
                     onClick={toggleMenu}
                   >
                     {item.text}
@@ -150,28 +141,86 @@ function Header() {
               ))}
             </ul>
           </nav>
-
-          {/* פרטי קשר בתפריט המובייל */}
-          <div className={styles["mobile-menu-contact"]}>
-            <h3 className={styles["mobile-menu-heading"]}>צור קשר</h3>
-            <div className={styles["mobile-menu-contact-info"]}>
-              <p className={styles["mobile-menu-contact-item"]}>
-                <span className={styles["mobile-menu-contact-icon"]}>📞</span>
-                <span>03-1234567</span>
-              </p>
-              <p className={styles["mobile-menu-contact-item"]}>
-                <span className={styles["mobile-menu-contact-icon"]}>✉️</span>
-                <span>info@example.co.il</span>
-              </p>
-            </div>
-          </div>
         </div>
-        
-        {/* שכבת רקע כהה */}
-        <div className={styles["mobile-menu-backdrop"]} onClick={toggleMenu}></div>
+
+        <div
+          className={styles["mobile-menu-backdrop"]}
+          onClick={toggleMenu}
+        ></div>
       </div>
     </header>
   );
 }
 
 export default Header;
+
+// "use client"
+// import React, { useState } from "react";
+// import Burger from "@/svg/header/burger";
+// import BurgerClose from "@/svg/menu/burger-close";
+// import Image from "next/image";
+// import Link from "next/link";
+// import styles from "./index.module.scss";
+
+// /* Example menu data fetched from API */
+// const menuList = [
+//   { text: "דף הבית", route: "/" },
+//   { text: "תחומי עיסוק", route: "/design-system" },
+//   { text: "שומות לדוגמא", route: "/form" },
+//   { text: "אודות", route: "/form" },
+//   { text: "המלצות", route: "/form" },
+// ];
+
+// function Header() {
+//   // State for managing the menu open/close status
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+//   // Toggles the menu open/close state
+//   const toggleMenu = () => {
+//     setIsMenuOpen((prevState) => !prevState);
+//   };
+
+//   // Generates navigation links based on the menu list
+//   const renderNavLinks = () => {
+//     return menuList.map((item, index) => (
+//       <Link
+//         href={item.route}
+//         key={index}
+//         className={styles["item"]}
+//         onClick={toggleMenu} // Closes menu when a link is clicked
+//       >
+//         <h4 className={styles["item-text"]}>{item.text}</h4>
+//       </Link>
+//     ));
+//   };
+
+//   // Determines active class for menu visibility
+//   const menuActiveClass = isMenuOpen ? styles["active"] : "";
+
+//   return (
+//     <header className={styles["wrapper"]}>
+//       <div className={styles["header"]}>
+//         <button className={styles["burger"]} onClick={toggleMenu}>
+//           <Burger />
+//         </button>
+
+//         <div className={`${styles["menu-wrapper"]} ${menuActiveClass}`}>
+//           <div className={styles["menu"]}>
+//             <div className={styles["menu-logo-container"]}>
+//               <Image src="/assets/logos/logo.png" alt="" fill />
+//             </div>
+
+//             <nav className={styles["nav"]}>{renderNavLinks()}</nav>
+
+//             <button className={styles["close-x"]} onClick={toggleMenu}>
+//               <BurgerClose />
+//             </button>
+//           </div>
+//           <div className={styles["backdrop"]} onClick={toggleMenu}></div>
+//         </div>
+//       </div>
+//     </header>
+//   );
+// }
+
+// export default Header;

@@ -1,0 +1,126 @@
+// src/containers/about-page/values-section/index.module.scss
+@import "/src/styles/imports.scss";
+
+.values {
+  padding: rem_size(80) 0;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 rem_size(16);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: rem_size(60);
+}
+
+.title {
+  font-size: rem_size(32);
+  font-weight: 700;
+  color: $dark-grey;
+  margin-bottom: rem_size(16);
+}
+
+.highlight {
+  color: #61d2b4;
+}
+
+.underline {
+  width: rem_size(80);
+  height: rem_size(3);
+  background-color: #61d2b4;
+  margin: 0 auto rem_size(24);
+}
+
+.subtitle {
+  font-size: rem_size(18);
+  line-height: 1.6;
+  color: $dark-grey;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem_size(30);
+}
+
+.valueCard {
+  background-color: #ffffff;
+  border-radius: rem_size(12);
+  padding: rem_size(30);
+  text-align: center;
+  box-shadow: 0 rem_size(4) rem_size(20) rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 rem_size(10) rem_size(30) rgba(0, 0, 0, 0.1);
+  }
+}
+
+.iconContainer {
+  width: rem_size(70);
+  height: rem_size(70);
+  border-radius: 50%;
+  background-color: rgba(97, 210, 180, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto rem_size(20);
+}
+
+.valueIcon {
+  font-size: rem_size(28);
+  color: #61d2b4;
+}
+
+.valueTitle {
+  font-size: rem_size(20);
+  font-weight: 700;
+  color: $dark-grey;
+  margin-bottom: rem_size(16);
+}
+
+.valueDescription {
+  font-size: rem_size(16);
+  color: $dark-grey;
+  line-height: 1.6;
+}
+
+@media (min-width: $media-tablet) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: $media-desktop) {
+  .valuesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .title {
+    font-size: rem_size(38);
+  }
+  
+  .valueTitle {
+    font-size: rem_size(22);
+  }
+  
+  .valueDescription {
+    font-size: rem_size(17);
+  }
+}

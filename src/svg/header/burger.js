@@ -1,14 +1,12 @@
-import React from "react";
-import {clsx} from "/src/utils/functions";
-import styles from "../../containers/header/index.module.scss";
+import { clsx } from '@/utils/functions';
+import React from 'react';
 
-const Burger = ({width = 16, height = 16, className, ...remainingProps}) => (
-		<svg xmlns="http://www.w3.org/2000/svg" id="Menu" width="16" height="16" viewBox="0 0 16 16" 
-			 className={clsx("svg-wrapper", className)} {...remainingProps}>
-			<path id="Menu-2" d="M-6160 15v-3h16v3zm0-6V6h16v3zm0-6V0h16v3z" className={styles['cls-1']}
-				  data-name="Menu" transform="translate(6160 1)"/>
-			<path id="Rectangle_1446" d="M0 0h16v16H0z" className={styles['cls-2']} data-name="Rectangle 1446"/>
-		</svg>
-	);
+const SvgComponent = ({ width = 16, height = 16, className, ...remainingProps }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width={width} height={height} className={clsx('svg-wrapper', className)} {...remainingProps}>
+  <rect x="2" y="5" width="20" height="3" rx="1.5" fill="#FFF"/>
+  <rect x="2" y="11" width="20" height="3" rx="1.5" fill="#FFF"/>
+  <rect x="2" y="17" width="20" height="3" rx="1.5" fill="#FFF"/>
+</svg>
+);
 
-export default Burger;
+export default SvgComponent;
