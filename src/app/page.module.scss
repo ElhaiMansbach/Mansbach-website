@@ -1,7 +1,9 @@
 @import "/src/styles/imports";
 
 .HomeWrapper{
-    // background-color: red;
+    background-color: red;
     height: 100%;
     width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }

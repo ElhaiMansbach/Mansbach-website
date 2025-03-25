@@ -28,7 +28,8 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    z-index: 2;
+    z-index: 200;
+    cursor: pointer;
     
     &:hover {
       background-color: rgba(0, 0, 0, 0.8);

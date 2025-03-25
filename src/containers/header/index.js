@@ -6,25 +6,27 @@ import Image from "next/image";
 import Burger from "@/svg/header/burger";
 import BurgerClose from "@/svg/menu/burger-close";
 import styles from "./index.module.scss";
-
+import { usePathname, useRouter } from "next/navigation";
 const menuItems = [
-  { text: "דף הבית", route: "/" },
-  { text: "תחומי עיסוק", route: "/services" },
-  { text: "שומות לדוגמא", route: "/examples" },
-  { text: "אודות", route: "/about" },
-  { text: "המלצות", route: "/testimonials" },
-  { text: "צור קשר", route: "/contact" },
+  { id: 1, text: "דף הבית", route: "/" },
+  { id: 2, text: "אודות", route: "/about" },
+  { id: 3, text: "שומות לדוגמא", route: "/examples" },
+  { id: 4, text: "קישורים", route: "/links" },
+  { id: 5, text: "מסמכים נדרשים", route: "/documents" },
+  { id: 6, text: "צור קשר", route: "/contact" },
 ];
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
+  const [activePage, setActivePage] = useState("/");
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    const path = window.location.pathname;
-    setActiveLink(path);
-    console.log("activeLink", activeLink);
+    // setTimeout(() => {
+    //   setActivePage(pathname);
+    // }, 100);
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
@@ -39,13 +41,17 @@ function Header() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-
     document.body.style.overflow = !isMenuOpen ? "hidden" : "auto";
   };
 
   const closeMenu = () => {
     setIsMenuOpen(false);
     document.body.style.overflow = "auto";
+  };
+
+  const handleSelectedPage = (id) => {
+    setActivePage(id);
+    closeMenu();
   };
 
   return (
@@ -70,8 +76,9 @@ function Header() {
               <li key={index} className={styles["header-nav-item"]}>
                 <Link
                   href={item.route}
+                  onClick={() => handleSelectedPage(item.id)}
                   className={`${styles["header-nav-link"]} ${
-                    activeLink === item.route ? styles["active"] : ""
+                    activePage === item.id ? styles["active"] : ""
                   }`}
                 >
                   {item.text}
@@ -131,9 +138,9 @@ function Header() {
                   <Link
                     href={item.route}
                     className={`${styles["mobile-menu-link"]} ${
-                      activeLink === item.route ? styles["active"] : ""
+                      activePage === item.id ? styles["active"] : ""
                     }`}
-                    onClick={toggleMenu}
+                    onClick={() => handleSelectedPage(item.id)}
                   >
                     {item.text}
                   </Link>

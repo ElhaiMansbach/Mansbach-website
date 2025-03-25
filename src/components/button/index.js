@@ -35,7 +35,6 @@ const Button = (props) => {
       tabIndex={tabIndex}
       aria-label={ariaLabel}
       aria-disabled={disabled}
-      style={{ ...style }}
     >
       <span className={styles["button-text"]}>{text}</span>
     </button>

@@ -16,7 +16,7 @@ const AboutSection = () => {
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
             <Image
-              src="/assets/images/about-image.jpg"
+              src="/assets/images/profile.jpg"
               alt="קצת עלינו"
               fill
               className={styles.image}

@@ -7,7 +7,6 @@ import Video from "@/components/video";
 
 const VideoHeroSection = ({
   videoSrc = "/assets/videos/hero-video.mp4",
-  posterImage = "/assets/images/video-poster.jpg",
   title = "פתרונות איכותיים בהתאמה אישית",
   subtitle = "אנו מספקים שירותים מקצועיים ברמה הגבוהה ביותר, עם דגש על פתרונות מותאמים אישית לכל לקוח ולקוח",
   primaryButtonText = "צור קשר",
@@ -47,7 +46,6 @@ const VideoHeroSection = ({
           autoPlay={autoPlay}
           muted={muted}
           loop={loop}
-          poster={posterImage}
           hideButton={hideVideoControls}
         />
         

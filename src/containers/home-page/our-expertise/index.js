@@ -1,64 +1,48 @@
-// src/components/home/ServicesSection.js
 import React from "react";
-import Image from "next/image";
-import styles from "./index.module.scss";
+import ExpertiseCard from "./expertise-card";
+import defaultStyles from "./index.module.scss";
 
 const services = [
   {
     id: 1,
     title: "ייעוץ משפטי",
     description: "ייעוץ משפטי מקצועי בתחומים מגוונים על ידי עורכי דין מנוסים",
-    icon: "/assets/icons/legal.svg",
+    icon: "/assets/icons/icon.svg",
   },
   {
     id: 2,
     title: "שמאות מקרקעין",
     description: "שמאות מקצועית ואמינה לנכסים, דירות ובתים פרטיים",
-    icon: "/assets/icons/real-estate.svg",
+    icon: "/assets/icons/icon.svg",
   },
   {
     id: 3,
     title: "הערכת שווי",
     description: "הערכות שווי מקצועיות לנכסים, עסקים ופרויקטים שונים",
-    icon: "/assets/icons/valuation.svg",
+    icon: "/assets/icons/icon.svg",
   },
   {
     id: 4,
     title: "תכנון וייעוץ",
     description: "ייעוץ בתכנון אדריכלי, הנדסי ופיננסי לפרויקטים",
-    icon: "/assets/icons/planning.svg",
-  }
+    icon: "/assets/icons/icon.svg",
+  },
 ];
 
-const ServiceCard = ({ title="hello", description, icon }) => {
-  return (
-    <div className={styles.card}>
-      <div className={styles.iconContainer}>
-        {icon ? (
-          <Image src={icon} alt={title} width={40} height={40} />
-        ) : (
-          <div className={styles.iconPlaceholder}></div>
-        )}
-      </div>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <p className={styles.cardDescription}>{description}</p>
-    </div>
-  );
-};
-
-const ServicesSection = () => {
+const OurExpertise = ({ styles = defaultStyles }) => {
   return (
     <section className={styles.services} id="services">
       <div className={styles.container}>
         <div className={styles.header}>
           <h2 className={styles.title}>תחומי ההתמחות שלנו</h2>
           <p className={styles.subtitle}>
-            אנו מציעים מגוון רחב של שירותים מקצועיים, המותאמים לצרכים הספציפיים של כל לקוח
+            אנו מציעים מגוון רחב של שירותים מקצועיים, המותאמים לצרכים הספציפיים
+            של כל לקוח
           </p>
         </div>
-        <div className={styles.cardGrid}>
+        <div className={styles.cardsContainer}>
           {services.map((service) => (
-            <ServiceCard
+            <ExpertiseCard
               key={service.id}
               title={service.title}
               description={service.description}
@@ -71,4 +55,4 @@ const ServicesSection = () => {
   );
 };
 
-export default ServicesSection;
+export default OurExpertise;
